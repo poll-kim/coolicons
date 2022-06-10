@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+
+const file_list = ['Add_Column.png', 'Add_Minus_Square.png', 'Add_Plus.png', 'Add_Plus_Circle.png', 'Add_Plus_Square.png', 'Add_Row.png', 'Add_To_Queue.png', 'Airplay.png', 'Alarm.png', 'Archive.png', 'Arrows_Reload_01.png', 'Arrow_Circle_Down.png', 'Arrow_Circle_Down_Left.png', 'Arrow_Circle_Down_Right.png', 'Arrow_Circle_Left.png', 'Arrow_Circle_Right.png', 'Arrow_Circle_Up.png', 'Arrow_Circle_Up_Left.png', 'Arrow_Circle_Up_Right.png', 'Arrow_Down_Left_LG.png', 'Arrow_Down_Left_MD.png', 'Arrow_Down_Left_SM.png', 'Arrow_Down_LG.png', 'Arrow_Down_MD.png', 'Arrow_Down_Right_LG.png', 'Arrow_Down_Right_MD.png', 'Arrow_Down_Right_SM.png', 'Arrow_Down_SM.png', 'Arrow_Down_Up.png', 'Arrow_Left_LG.png', 'Arrow_Left_MD.png', 'Arrow_Left_Right.png', 'Arrow_Left_SM.png', 'Arrow_Reload_02.png', 'Arrow_Right_LG.png', 'Arrow_Right_MD.png', 'Arrow_Right_SM.png', 'Arrow_Sub_Down_Left.png', 'Arrow_Sub_Down_Right.png', 'Arrow_Sub_Left_Down.png', 'Arrow_Sub_Left_Up.png', 'Arrow_Sub_Right_Down.png', 'Arrow_Sub_Right_Up.png', 'Arrow_Sub_Up_Left.png', 'Arrow_Sub_Up_Right.png', 'Arrow_Undo_Down_Left.png', 'Arrow_Undo_Down_Right.png', 'Arrow_Undo_Up_Left.png', 'Arrow_Undo_Up_Right.png', 'Arrow_Up_Left_LG.png', 'Arrow_Up_Left_MD.png', 'Arrow_Up_Left_SM.png', 'Arrow_Up_LG.png', 'Arrow_Up_MD.png', 'Arrow_Up_Right_LG.png', 'Arrow_Up_Right_MD.png', 'Arrow_Up_Right_SM.png', 'Arrow_Up_SM.png', 'Bar_Bottom.png', 'Bar_Left.png', 'Bar_Right.png', 'Bar_Top.png', 'Bell.png', 'Bell_Add.png', 'Bell_Close.png', 'Bell_Notification.png', 'Bell_Off.png', 'Bell_Remove.png', 'Bell_Ring.png', 'Bold.png', 'Book.png', 'Bookmark.png', 'Book_Open.png', 'Building_01.png', 'Building_02.png', 'Building_03.png', 'Building_04.png', 'Bulb.png', 'Calendar.png', 'Calendar_Add.png', 'Calendar_Check.png', 'Calendar_Close.png', 'Calendar_Days.png', 'Calendar_Event.png', 'Calendar_Remove.png', 'Calendar_Week.png', 'Camera.png', 'Caret_Circle_Down.png', 'Caret_Circle_Left.png', 'Caret_Circle_Right.png', 'Caret_Circle_Up.png', 'Caret_Down.png', 'Caret_Left.png', 'Caret_Right.png', 'Caret_Up.png', 'Chart_Bar_Horizontal_01.png', 'Chart_Bar_Vertical_01.png', 'Chart_Line.png', 'Chart_Pie.png', 'Chat.png', 'Chat_Add.png', 'Chat_Check.png', 'Chat_Circle.png', 'Chat_Circle_Add.png', 'Chat_Circle_Check.png', 'Chat_Circle_Close.png', 'Chat_Circle_Dots.png', 'Chat_Circle_Remove.png', 'Chat_Close.png', 'Chat_Conversation.png', 'Chat_Conversation_Circle.png', 'Chat_Dots.png', 'Chat_Remove.png', 'Check.png', 'Checkbox_Check.png', 'Checkbox_Fill.png', 'Checkbox_Unchecked.png', 'Check_All.png', 'Check_All_Big.png', 'Check_Big.png', 'Chevron_Down-1.png', 'Chevron_Down.png', 'Chevron_Down_Duo.png', 'Chevron_Left-1.png', 'Chevron_Left.png', 'Chevron_Left_Duo.png', 'Chevron_Right-1.png', 'Chevron_Right.png', 'Chevron_Right_Duo.png', 'Chevron_Up-1.png', 'Chevron_Up.png', 'Chevron_Up_Duo.png', 'Chromecast.png', 'Circle.png', 'Circle_Check.png', 'Circle_Warning.png', 'Clock.png', 'Close_Circle.png', 'Close_LG.png', 'Close_MD.png', 'Close_SM.png', 'Close_Square.png', 'Cloud.png', 'Cloud_Add.png', 'Cloud_Check.png', 'Cloud_Close.png', 'Cloud_Download.png', 'Cloud_Off.png', 
+'Cloud_Remove.png', 'Cloud_Upload.png', 'Code.png', 'Coffee.png', 'Coffe_To_Go.png', 'Columns.png', 'Combine_Cells.png', 'Command.png', 'Compass.png', 'Cookie.png', 'Copy.png', 'Credit_Card_01.png', 'Credit_Card_02.png', 'Crop.png', 'Cupcake.png', 'Cylinder.png', 'Data.png', 
+'Delete_Column.png', 'Delete_Row.png', 'Desktop.png', 'Desktop_Tower.png', 'Devices.png', 'Double_Quotes_L.png', 'Double_Quotes_R.png', 'Download.png', 'Download_Package.png', 'Drag_Horizontal.png', 'Drag_Vertical.png', 'Dummy_Circle.png', 'Dummy_Circle_Circle.png', 'Dummy_Square.png', 'Dummy_Square_Circle.png', 'Edit_Pencil_01.png', 'Edit_Pencil_02.png', 'Edit_Pencil_Line_01.png', 'Edit_Pencil_Line_02.png', 'Exit.png', 'Expand.png', 'External_Link.png', 'Files.png', 'File_Add.png', 'File_Blank.png', 'File_Check.png', 'File_Close.png', 'File_Code.png', 'File_Document.png', 'File_Download.png', 'File_Edit.png', 'File_Remove.png', 'File_Search.png', 'File_Upload.png', 'Filter.png', 'Filter_Off.png', 'First_Aid.png', 'Flag.png', 'Folder.png', 'Folders.png', 'Folder_Add.png', 'Folder_Check.png', 'Folder_Close.png', 'Folder_Code.png', 'Folder_Document.png', 'Folder_Download.png', 'Folder_Edit.png', 'Folder_Open.png', 'Folder_Remove.png', 'Folder_Search.png', 'Folder_Upload.png', 
+'Font.png', 'Forward.png', 'Gift.png', 'Globe.png', 'Hamburger_LG.png', 'Hamburger_MD.png', 
+'Handbag.png', 'Heading.png', 'Heading_H1.png', 'Heading_H2.png', 'Heading_H3.png', 'Heading_H4.png', 'Heading_H5.png', 'Heading_H6.png', 'Headphones.png', 'Heart_01.png', 'Heart_02.png', 'Hide.png', 'House_01.png', 'House_02.png', 'House_03.png', 'House_Add.png', 'House_Check.png', 'House_Close.png', 'House_Remove.png', 'Image_01.png', 'Image_02.png', 'Info.png', 'Instance.png', 'Italic.png', 'Keyboard.png', 'Label.png', 'Laptop.png', 'Layer.png', 'Layers.png', 'Leaf.png', 'Line_L.png', 'Line_M.png', 'Line_S.png', 'Line_Xl.png', 'Link.png', 'Link_Break.png', 'Link_Horizontal.png', 'Link_Horizontal_Off.png', 'Link_Vertical.png', 'List_Add.png', 'List_Check.png', 'List_Checklist.png', 'List_Ordered.png', 'List_Remove.png', 'List_Unordered.png', 'Loading.png', 'Lock.png', 'Lock_Open.png', 'Log_Out.png', 'Magnifying_Glass_Minus.png', 'Magnifying_Glass_Plus.png', 'Mail.png', 'Mail_Open.png', 'Main_Component.png', 'Map.png', 'Map_Pin.png', 'Mention.png', 'Menu_Alt_01.png', 'Menu_Alt_02.png', 'Menu_Alt_03.png', 'Menu_Alt_04.png', 'Menu_Alt_05.png', 'Menu_Duo_LG.png', 'Menu_Duo_MD.png', 'Mobile.png', 'Mobile_Button.png', 'Monitor.png', 'Moon.png', 'More_Grid_Big.png', 'More_Grid_Small.png', 'More_Horizontal.png', 'More_Vertical.png', 'Mouse.png', 'Move.png', 'Move_Horizontal.png', 'Move_Vertical.png', 'Navigation.png', 'Note.png', 'Notebook.png', 'Note_Edit.png', 'Note_Search.png', 'Octagon.png', 'Octagon_Check.png', 'Octagon_Warning.png', 'Option.png', 'Paperclip_Attechment_Horizontal.png', 'Paperclip_Attechment_Tilt.png', 'Paper_Plane.png', 'Paragraph.png', 'Path.png', 'Pause.png', 'Pause_Circle.png', 'Phone.png', 'Planet.png', 'Play.png', 'Play_Circle.png', 'Printer.png', 'Puzzle.png', 'Qr_Code.png', 'Radio_Fill.png', 'Radio_Unchecked.png', 'Rainbow.png', 'Redo.png', 'Remove_Minus.png', 'Remove_Minus_Circle.png', 'Rewind.png', 'Rows.png', 'Ruler.png', 'Save.png', 'Search_Magnifying_Glass.png', 'Select_Multiple.png', 'Settings.png', 'Settings_Future.png', 'Share_Android.png', 'Share_iOS_Export.png', 'Shield.png', 'Shield_Check.png', 'Shield_Warning.png', 'Shopping_Bag_01.png', 'Shopping_Bag_02.png', 'Shopping_Cart_01.png', 'Shopping_Cart_02.png', 'Show.png', 'Shrink.png', 'Shuffle.png', 'Single_Quotes_L.png', 'Single_Quotes_R.png', 'Skip_Back.png', 'Skip_Forward.png', 'Slider_01.png', 'Slider_02.png', 'Slider_03.png', 'Sort_Ascending.png', 'Sort_Descending.png', 'Square-1.png', 'Square.png', 'Square_Check.png', 'Star.png', 'Stop.png', 'Stop_Circle.png', 'Stop_Sign.png', 'Strikethrough.png', 'Suitcase.png', 'Sun.png', 'Swatches_Palette.png', 'Swicht_Left.png', 'Swicht_Right.png', 'Table.png', 'Tablet.png', 'Tablet_Button.png', 'Table_Add.png', 'Table_Remove.png', 'Tag.png', 'Terminal.png', 'Text.png', 'Text_Align_Center.png', 'Text_Align_Justify.png', 'Text_Align_Left.png', 'Text_Align_Right.png', 'Ticket_Voucher.png', 'Timer.png', 'Timer_Add-1.png', 'Timer_Add.png', 'Timer_Remove.png', 'Trash_Empty.png', 'Trash_Full.png', 'Trending_Down.png', 'Trending_Up.png', 'Triangle.png', 'Triangle_Check.png', 'Triangle_Warning.png', 'Underline.png', 'Undo.png', 'Unfold_Less.png', 'Unfold_More.png', 'UserCircle.png', 'Users.png', 'Users_Group.png', 'User_01.png', 'User_02.png', 
+'User_03.png', 'User_Add.png', 'User_Card_ID.png', 'User_Check.png', 'User_Close.png', 'User_Remove.png', 'User_Square.png', 'User_Voice.png', 'Wavy.png', 'Wavy_Check.png', 'Wavy_Warning.png', 'Window.png', 'Window_Check.png', 'Window_Close.png', 'Window_Code_Block.png', 'Window_Sidebar.png', 'Window_Terminal.png']
 
 function App() {
+  const [text, setText] = useState('');
+  const [filterd, setFilterd] = useState(file_list);
+  
+  const onChange = (e) => {
+    setText(e.target.value)
+    const result = file_list.filter(name => name.toLowerCase().replace(".png","").replaceAll("_","").replaceAll("-","").includes(text));
+    setFilterd(result)
+  }
+  const onClick = (name) => {
+    const newWord = name.replace(".png", "").replaceAll("-","_")
+    navigator.clipboard.writeText(newWord)
+    alert(`${newWord} 가 복사되었습니다.`)
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col">
+      <h1>Coolicons</h1>
+      <input onChange={onChange}/>
+      <div className='grid grid-cols-12 gap-3'>{
+        filterd.map((name) => (<div onClick={() => onClick(name)} className='cursor-pointer whitespace-nowrap rounded-xl flex flex-col items-center p-4 bg-black text-white'><img src={`/coolicons_pack/${name}`} alt={`${name}`} className="" /><p>{name.toLowerCase().replace(".png","").replaceAll("_","").replaceAll("-","")}</p></div>))
+      }</div>
+      
     </div>
   );
 }
